@@ -1,7 +1,7 @@
 // This should work both in node and in the browsers, so that's what this wrapper is about
 ;(function(root, undefined) {
 
-    
+
     /**
      * Timecode object constructor
      * @param {number|String|Date} timeCode Frame count as number, "HH:MM:SS(:|;|.)FF", or Date()
@@ -19,7 +19,7 @@
         if (typeof frameRate == 'undefined') this.frameRate = 29.97;
         else if (typeof frameRate == 'number' && frameRate>0) this.frameRate = frameRate;
         else throw new Error('Number expected as framerate');
-        
+
         // If we are passed dropFrame, we need to use it
         if (typeof dropFrame === 'boolean') this.dropFrame = dropFrame;
         else this.dropFrame = (this.frameRate==29.97 || this.frameRate==59.94); // by default, assume DF for 29.97 and 59.94, NDF otherwise
@@ -29,7 +29,7 @@
             this.frameCount = Math.floor(timeCode);
         }
         else if (typeof timeCode == 'string') {
-            
+
             // pick it apart
             var parts = timeCode.match('^([012]\\d):(\\d\\d):(\\d\\d)(:|;|\\.)(\\d\\d)$');
             if (!parts) throw new Error("Timecode string expected as HH:MM:SS:FF or HH:MM:SS;FF");
@@ -40,7 +40,7 @@
             this.frames = parseInt(parts[5]);
 
             // make sure the numbers make sense
-            if ( this.hours>23 || this.minutes>59 || this.seconds>59 || 
+            if ( this.hours>23 || this.minutes>59 || this.seconds>59 ||
                  this.frames>=this.frameRate ||
                  (this.dropFrame && this.seconds==0 && this.minutes%10 && this.frames<2*(this.frameRate/29.97) )
             ) throw new Error("Invalid timecode")
@@ -51,7 +51,7 @@
         }
         else if (typeof timeCode == 'undefined') {
             this.frameCount = 0;
-        } 
+        }
         else {
             throw new Error('Timecode() constructor expects a number, timecode string, or Date()');
         }
@@ -155,9 +155,9 @@
             var newFrameCount = this.frameCount + Math.floor(t) * (negative?-1:1);
             if (newFrameCount<0) throw new Error("Negative timecodes not supported");
             this.frameCount = newFrameCount;
-        } 
+        }
         else {
-            if (!(t instanceof Timecode)) t = new Timecode(t);
+            if (!(t instanceof Timecode)) t = new Timecode(t, this.frameRate, this.dropFrame);
             return this.add(t.frameCount,negative);
         }
         this.frameCount = this.frameCount % (Math.floor(this.frameRate*86400)); // wraparound 24h
