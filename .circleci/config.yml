@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # the image running the build
-      - image: circleci/node:12.10.0
+      - image: 497387467775.dkr.ecr.us-east-1.amazonaws.com/oz-base-test:0.9.1
     steps:
       - checkout
 
