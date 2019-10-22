@@ -21,9 +21,7 @@
     "time"
   ],
   "engines": {
-    "node": "12.10.0",
-    "npm": "6.10.3",
-    "yarn": "1.17.3"
+    "node": "12.10.0"
   },
   "author": "Dimitri Tarassenko",
   "license": "MIT",
