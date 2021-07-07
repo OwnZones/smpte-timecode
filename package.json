@@ -1,6 +1,6 @@
 {
   "name": "@ownzones/smpte-timecode",
-  "version": "1.0.4",
+  "version": "1.0.5-0",
   "description": "JavaScript implementation of SMPTE timecode type",
   "main": "smpte-timecode.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
     "coverage": "codecov --file=coverage/lcov.info --disable=gcov",
     "prebuild": "npm_version=$(npm --version); if [ ${npm_version%%.*} -ge 5 ]; then npx use-yarn -f message.txt; else use-yarn || ( npm install --save-dev --no-scripts --no-save use-yarn && use-yarn ); fi",
-    "preinstall": "npm_version=$(npm --version); if [ ${npm_version%%.*} -ge 5 ]; then npx use-yarn -f message.txt; else use-yarn || ( npm install --save-dev --no-scripts --no-save use-yarn && use-yarn ); fi"    
+    "preinstall": "npm_version=$(npm --version); if [ ${npm_version%%.*} -ge 5 ]; then npx use-yarn -f message.txt; else use-yarn || ( npm install --save-dev --no-scripts --no-save use-yarn && use-yarn ); fi"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "expect.js": "0.3.1",
     "istanbul": "0.4.5",
     "mocha": "6.2.0",
-    "publish": "0.6.0"
+    "publish": "0.6.0",
+    "use-yarn": "^2.2.0"
   }
 }
